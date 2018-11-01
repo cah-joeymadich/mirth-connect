@@ -1,0 +1,27 @@
+version: '2'
+services:
+
+  mirthconnect:
+    build: ./
+    container_name: mirthconnect
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    expose: 
+      - "8080"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      - MYSQL_DATABASE=mirthdb
+      - MYSQL_ROOT_PASSWORD=mirth
+    ports:
+      - "3306:3306"
+
+  
