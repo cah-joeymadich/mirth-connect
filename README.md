@@ -1,3 +1,4 @@
+![status](https://img.shields.io/badge/status-reference-blue.svg)
 # Mirth Connect Docker
 
 * Run `docker-compose up -d --build`
