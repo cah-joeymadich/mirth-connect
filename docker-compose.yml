@@ -1,8 +1,8 @@
-version: '2'
+version: '3'
 services:
 
   mirthconnect:
-    build: ./
+    image: salmonking72/mirth-connect
     container_name: mirthconnect
     depends_on:
       - mysql
@@ -13,6 +13,12 @@ services:
     ports:
       - "8080:8080"
       - "8443:8443"
+    deploy:
+        restart_policy:
+            condition: on-failure
+            delay: 5s
+            max_attempts: 3
+            window: 25s
 
   mysql:
     image: mysql:5.7

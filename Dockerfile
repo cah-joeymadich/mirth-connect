@@ -41,12 +41,13 @@ WORKDIR /opt/mirth-connect
 EXPOSE 8080 8443
 
 COPY docker-entrypoint.sh /
-
+COPY wait-for-it.sh /
 
 RUN chmod a+x /docker-entrypoint.sh
+RUN chmod a+x /wait-for-it.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
+# ENTRYPOINT ["./wait-for-it.sh", "mysql:3306"]
 
-
-CMD ["java", "-jar", "mirth-server-launcher.jar"]
- 
+CMD ["/wait-for-it.sh", "mysql:3306", "--", "java", "-jar", "mirth-server-launcher.jar"]
+# CMD ["java", "-jar", "mirth-server-launcher.jar"]
