@@ -2,7 +2,7 @@ version: '3'
 services:
 
   mirthconnect:
-    image: salmonking72/mirth-connect
+    build: ./
     container_name: mirthconnect
     depends_on:
       - mysql
